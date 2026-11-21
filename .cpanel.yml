@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=$HOME/public_html/
+    - /bin/mkdir -p $DEPLOYPATH
+    - 'if [ ! -f dist/index.html ] && command -v npm >/dev/null 2>&1; then npm ci --no-audit --no-fund && npm run build; fi'
+    - 'if [ -d dist ]; then /bin/cp -R dist/. $DEPLOYPATH; fi'

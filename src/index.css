@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-hand: "Caveat", cursive;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-16px);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    overflow-x: clip;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a,
+  button {
+    touch-action: manipulation;
+  }
+
+  section[id] {
+    scroll-margin-top: 64px;
+  }
+
+  :focus-visible {
+    outline: 2px solid #ff2a2a;
+    outline-offset: 2px;
+  }
+}
+
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+@keyframes dropBounce {
+  0% {
+    transform: translateY(-220px) rotate(-6deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) rotate(-3deg);
+    opacity: 1;
+  }
+  66% {
+    transform: translateY(-28px) rotate(-1.5deg);
+    opacity: 1;
+  }
+  82% {
+    transform: translateY(0) rotate(-3.5deg);
+    opacity: 1;
+  }
+  92% {
+    transform: translateY(-10px) rotate(-2.5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) rotate(-3deg);
+    opacity: 1;
+  }
+}
+
+.animate-drop-bounce {
+  animation: dropBounce 1.15s cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
+}
+
+.portrait-hero-mask {
+  mask-image: radial-gradient(ellipse 75% 82% at 50% 45%, black 55%, transparent 98%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 82% at 50% 45%, black 55%, transparent 98%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-drop-bounce {
+    animation: none;
+  }
+}

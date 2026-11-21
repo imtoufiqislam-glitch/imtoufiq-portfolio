@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+  <url>
+    <loc>https://imtoufiq.xyz/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://imtoufiq.xyz/assets/toufiq-hero-cutout.png</image:loc>
+      <image:title>Toufiq — Developer &amp; Digital Marketer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://imtoufiq.xyz/src/assets/images/project_boikhujistore_1795287819501.jpg</image:loc>
+      <image:title>Boikhujistore — E-Commerce Bookstore &amp; Meta Ads Scaling</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://imtoufiq.xyz/src/assets/images/project_vipbazer_1795287819743.jpg</image:loc>
+      <image:title>VIPBazer — Multi-Vendor Marketplace &amp; Organic SEO</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://imtoufiq.xyz/src/assets/images/project_video_motion_1795287821986.jpg</image:loc>
+      <image:title>Meta Ads &amp; Reels Growth Engine</image:title>
+    </image:image>
+  </url>
+</urlset>
