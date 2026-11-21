@@ -33,12 +33,12 @@ Shared cPanel hosting often lacks Node.js 20+ or enough RAM to run `vite build`.
 
 ### Option 2: cPanel Git™ Version Control (`.cpanel.yml`)
 
-This repository includes `.cpanel.yml` configured to deploy `dist/` straight to `$HOME/public_html/`.
+This repository includes `.cpanel.yml` configured to always run a fresh production build (`npm ci` when `package-lock.json` is present, otherwise `npm install`, followed by `npm run build`) and deploy only the compiled contents of `dist/` into `$HOME/public_html/` while preserving your existing `.htaccess` and cPanel system files.
 
 1. In cPanel, open **Git™ Version Control → Create**.
-2. Paste your GitHub repository URL and set a repository path (e.g. `/home/USERNAME/repositories/toufiq-portfolio`).
-3. If your cPanel server has Node.js/npm installed, click **Manage → Pull or Deploy → Deploy HEAD Commit** — `.cpanel.yml` will build and copy `dist/` to `public_html/`.
-   - *Tip:* If your shared cPanel host does not have Node.js available in shell PATH, use **Option 1 (GitHub Actions)** or **Option 3 (Manual Build Upload)**.
+2. Paste your GitHub repository URL (`imtoufiq-portfolio`) and set a repository path (e.g. `/home/USERNAME/repositories/imtoufiq-portfolio`).
+3. Click **Manage → Pull or Deploy → Update from Remote**, then click **Deploy HEAD Commit**.
+   - *Tip:* If your shared cPanel plan does not provide Node.js 20+ in shell PATH, use **Option 1 (GitHub Actions)** or **Option 3 (Manual Build Upload)**.
 
 ---
 

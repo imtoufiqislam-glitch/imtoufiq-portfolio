@@ -2,6 +2,13 @@
 deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
-    - /bin/mkdir -p $DEPLOYPATH
-    - 'if [ ! -f dist/index.html ] && command -v npm >/dev/null 2>&1; then npm ci --no-audit --no-fund && npm run build; fi'
-    - 'if [ -d dist ]; then /bin/cp -R dist/. $DEPLOYPATH; fi'
+    - 'for dir in /opt/cpanel/ea-nodejs22/bin /opt/cpanel/ea-nodejs20/bin /opt/cpanel/ea-nodejs18/bin "$HOME"/nodevenv/*/22/bin "$HOME"/nodevenv/*/20/bin "$HOME"/nodevenv/*/18/bin "$HOME"/.nvm/versions/node/*/bin /usr/local/bin; do if [ -d "$dir" ]; then PATH="$dir:$PATH"; fi; done; export PATH'
+    - 'command -v npm >/dev/null 2>&1 || { echo "Error: Node.js/npm not found in PATH on this cPanel server." >&2; exit 1; }'
+    - '/bin/rm -rf dist'
+    - 'if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; else npm install --no-audit --no-fund; fi'
+    - 'npm run build'
+    - 'test -f dist/index.html || { echo "Error: Production build failed — dist/index.html not found." >&2; exit 1; }'
+    - '/bin/mkdir -p "$DEPLOYPATH"'
+    - '/bin/rm -rf "${DEPLOYPATH}assets" "${DEPLOYPATH}src"'
+    - '/bin/cp -R dist/* "$DEPLOYPATH"'
+    - 'if [ -f dist/.htaccess ] && [ ! -f "${DEPLOYPATH}.htaccess" ]; then /bin/cp dist/.htaccess "${DEPLOYPATH}.htaccess"; fi'
