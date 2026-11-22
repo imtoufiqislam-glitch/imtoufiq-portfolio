@@ -14,7 +14,12 @@ DirectoryIndex index.html
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Route all other SPA requests to index.html
+  # Never rewrite API endpoints, cPanel system paths, or missing static assets to index.html
+  RewriteCond %{REQUEST_URI} ^/(api|\.well-known|cgi-bin)(/|$) [NC,OR]
+  RewriteCond %{REQUEST_URI} \.(js|mjs|css|map|png|jpe?g|gif|webp|avif|svg|ico|woff2?|ttf|eot|json|xml|txt|pdf|mp4|webm)$ [NC]
+  RewriteRule ^ - [L]
+
+  # Route all other SPA page requests to index.html
   RewriteRule ^ index.html [L]
 </IfModule>
 
